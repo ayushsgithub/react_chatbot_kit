@@ -1,7 +1,11 @@
 // in ActionProvider.jsx
 import React from 'react';
+import { createClientMessage } from 'react-chatbot-kit';
+import AgeDropdown from './AgeDropdown';
+
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 
@@ -12,26 +16,25 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleGot = () => {
+    const message = createClientMessage('Got it!');
     const botMessage = createChatBotMessage('Enter Your Name',);
 
     setState((prev) => ({
       ...prev,
-      messages: [...prev.messages, botMessage],
+      messages: [...prev.messages, message, botMessage],
     }));
   };
-  const handleName = () => {
-    const botMessage = createChatBotMessage('Enter your Age');
+  const showAge = (age) => {
+    const botMessage = createClientMessage(age);
 
     setState((prev) => ({
       ...prev,
-      messages: [...prev.messages, botMessage],
+      messages: [...prev.messages, botMessage, age],
     }));
+    handleNumber()
   };
-  const handleFinal = () => {
-    const botMessage = createChatBotMessage("",{
-      delay: 3000,
-      widget: "final",
-    });
+  const handleName = () => {
+    const botMessage = createChatBotMessage(<AgeDropdown showAge={showAge}/>,);
 
     setState((prev) => ({
       ...prev,
@@ -40,15 +43,31 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleNumber = () => {
-    const botMessage = createChatBotMessage('Thank You, In 5 seconds, bot will exit',);
-
+    const botMessage = createChatBotMessage('Thank You, In 5 seconds, bot will exit',{
+      widget: 'final',
+      delay: 2000
+    });
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
 
-    handleFinal()
+    // handleFinal()
   };
+
+  // const handleFinal = async () => {
+    
+  //   const botMessage = await createChatBotMessage(``, {
+  //     delay: 2000,
+  //     widget: "final"
+  //   })
+
+  //   setState((prev) => ({
+  //     ...prev,
+  //     messages: [...prev.messages, botMessage],
+  //   }));
+  // };
+
 
   const handleDog = () => {
     const botMessage = createChatBotMessage(
@@ -76,6 +95,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleName,
             handleNumber,
             handleGot,
+            showAge,
           },
         });
       })}

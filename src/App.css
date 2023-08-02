@@ -48,7 +48,8 @@
   color: #fff;
   font-weight: medium;
   position: relative;
-  width: 184.5px;
+  /* width: 184.5px; */
+  width: fit-content;
   margin-left: auto;
   text-align: left;
 }

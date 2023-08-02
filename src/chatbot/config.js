@@ -1,11 +1,12 @@
 // in config.js
-import { createChatBotMessage, createCustomMessage } from 'react-chatbot-kit';
+import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../chatbot/DogPicture'
-import Final from '../chatbot/final';
+import Final from './Final.jsx';
 import Overview from '../widgets/overview';
+import CustomMessage from './customMesage';
+import Age from './age'
 
-const botName = "Ayush's Bot";
-
+const botName = "HappilyEver";
 
 const config = {
   // initialMessages: [createChatBotMessage(`Hi, I'm ${botName}`)],
@@ -15,9 +16,19 @@ const config = {
     delay: 400,
     widget: "overview"
   }),
-  createCustomMessage('Test', 'custom'),
+  // createCustomMessage('Test', 'final'),
 ],
   botName: botName,
+  state: {
+    gist: '',
+    infoBox: '',
+  },
+  customComponents: {},
+  customMessages: {
+    custom: (props) => <CustomMessage {...props} />,
+    age: (props) => <Age {...props} />,
+    final: (props) => <Final {...props} />,
+  },
   widgets: [
     {
       widgetName: "overview",
@@ -28,10 +39,9 @@ const config = {
       widgetName: 'dogPicture',
       widgetFunc: (props) => <DogPicture {...props} />,
     },
-    
     {
       widgetName: 'final',
-      widgetFunc: (props) => <Final />,
+      widgetFunc: (props) => <Final {...props} />,
     },
   ],
   customStyles: {

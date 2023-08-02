@@ -5,16 +5,16 @@ import React from 'react';
 const MessageParser = ({ children, actions }) => {
   
   const parse = (message) => {
+
+    const lower = message.toLowerCase()
+
     if (message.includes('hello')) {
       actions.handleHello();
-    }
-    if (message.includes('got')) {
-      actions.handleGot();
     }
     if (message.includes('dog')) {
       actions.handleDog();
     }
-    if (message.toLowerCase().includes('gowtham')) {
+    if (lower.includes('gowtham') ) {
       actions.handleName();
     }
     if (message.toLowerCase().includes("27")) {
