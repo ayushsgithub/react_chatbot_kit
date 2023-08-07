@@ -36,7 +36,7 @@
   justify-content: center;
 }
 
-.final {
+/* .final {
   margin-top: 5px;
   background-color: rgb(55, 107, 126);
   padding: 5px;
@@ -48,10 +48,20 @@
   color: #fff;
   font-weight: medium;
   position: relative;
-  /* width: 184.5px; */
   width: fit-content;
   margin-left: auto;
   text-align: left;
+} */
+
+.final {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+  color: azure;
+  font-size: larger;
+  
 }
 
 .options {

@@ -2,9 +2,15 @@
 import React from 'react';
 import { createClientMessage } from 'react-chatbot-kit';
 import AgeDropdown from './AgeDropdown';
+// import Final from './Final'
+import { useDispatch } from 'react-redux';
+import { isPage } from '../redux/counterSlice';
 
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+
+  const dispatch = useDispatch()
+
 
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
@@ -43,31 +49,20 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const handleNumber = () => {
-    const botMessage = createChatBotMessage('Thank You, In 5 seconds, bot will exit',{
-      widget: 'final',
-      delay: 2000
-    });
+    const botMessage = createChatBotMessage('Thank You, In 5 seconds, bot will exit');
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
 
-    // handleFinal()
+    setTimeout(() => {
+      handleFinal()
+    }, 3000);
   };
 
-  // const handleFinal = async () => {
-    
-  //   const botMessage = await createChatBotMessage(``, {
-  //     delay: 2000,
-  //     widget: "final"
-  //   })
-
-  //   setState((prev) => ({
-  //     ...prev,
-  //     messages: [...prev.messages, botMessage],
-  //   }));
-  // };
-
+  const handleFinal = () => {
+    dispatch(isPage(true))
+  };
 
   const handleDog = () => {
     const botMessage = createChatBotMessage(
