@@ -11,7 +11,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   const dispatch = useDispatch()
 
-
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 

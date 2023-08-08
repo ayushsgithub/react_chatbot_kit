@@ -20,7 +20,6 @@ function App() {
   return (
 
 <>
-    
     {enroll ? 
     
     (page3 ? <Final /> : <div className="App">
@@ -35,11 +34,9 @@ function App() {
       <h2 className="enroll-h2">Enter Into Student Info System</h2>
       <button className="enroll-button" onClick={handleChange}>Enroll Now!</button>
     </div>}
-
     </>
-
-
   );
+
 }
 
 export default App;
